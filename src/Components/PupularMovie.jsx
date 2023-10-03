@@ -20,12 +20,17 @@ const PupularMovie = ({ popularMovie, limit }) => {
         </div>
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-8 lg:gap-16  px-4 sm:px-4 md:px-4 lg:px-10 justify-center lg:mt-24 mt-10 mb-10 lg:mb-20 ">
           {limitedMovies.map((movie) => (
-            <div key={movie?.id}>
-              <div>
+            <div key={movie?.id} className="relative cursor-pointer">
+              <div className="">
                 <img
                   className="h-full w-full rounded-3xl"
                   src={`${import.meta.env.VITE_BASEIMGURL}${movie.poster_path}`}
                 />
+                <Link
+                  as={Link}
+                  className="absolute top-0 h-full w-full flex justify-between items-center cursor-pointer"
+                  to={`/detail/${movie.id}`}
+                ></Link>
               </div>
             </div>
           ))}

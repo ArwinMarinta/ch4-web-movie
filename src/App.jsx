@@ -7,6 +7,7 @@ import HomePage from "./Pages/HomePage";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AllPopularMovie from "./Pages/AllPopularMovie";
+import TrailerMovie from "./Pages/TrailerMovie";
 
 function App() {
   const [popularMovie, setPopularMovie] = useState([]);
@@ -42,11 +43,12 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage popularMovie={popularMovie} />} />
         <Route path="/search" element={<SearchMovie />} />
-        <Route path="/detail" element={<DetailMovie />} />
+        <Route path="/detail/:movieId" element={<DetailMovie />} />
         <Route
           path="/pupular-movie"
           element={<AllPopularMovie popularMovie={popularMovie} />}
         />
+        <Route path="/trailer/:movieId" element={<TrailerMovie />} />
       </Routes>
     </BrowserRouter>
   );
