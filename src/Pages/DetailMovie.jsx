@@ -34,7 +34,8 @@ const DetailMovie = () => {
       }
     };
     getDetailMovie();
-  }, [movieId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="relative">
@@ -43,18 +44,11 @@ const DetailMovie = () => {
         className="w-full h-screen relative"
       />
       <div className="absolute top-4 bottom-4 left-8  flex items-center">
-        <div className="flex flex-col justify-center gap-10  ">
+        <div className="flex flex-col justify-center gap-10 pl-16 ">
           <div className="text-6xl text-red-600 font-bold">
             {detailMovie?.original_title}
           </div>
-          <div>
-            {detailMovie?.genres?.name}
-            {/* {detailMovie.map((movie) => {
-              <div key={movie.genres}>
-                <p>{movie.name}</p>
-              </div>;
-            })} */}
-          </div>
+          <div>{detailMovie?.genres?.name}</div>
           <div className="text-2xl text-red-600 w-[50%] font-semibold">
             {detailMovie?.overview}
           </div>

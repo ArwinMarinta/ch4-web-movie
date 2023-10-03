@@ -6,7 +6,9 @@ import axios from "axios";
 const TrailerMovie = () => {
   const { movieId } = useParams();
   const [TrailerMovie, setTrailerMovie] = useState([]);
+  const [posterMovie, setPosterMovie] = useState([]);
 
+  //Fungsi untuk mengambil API  Video Trailer
   useEffect(() => {
     const getTrailerMovie = async () => {
       try {
@@ -30,18 +32,48 @@ const TrailerMovie = () => {
     };
     getTrailerMovie();
   }, [movieId]);
+
+  //Fungsi untuk mengambil detail pada API
+  useEffect(() => {
+    const getPosterMovie = async () => {
+      try {
+        const response = await axios.get(
+          `${
+            import.meta.env.VITE_API_URL
+          }/3/movie/${movieId}?language=en-US&page=1}`,
+          {
+            headers: {
+              Authorization: `Bearer ${import.meta.env.VITE_API_AUTH_TOKEN}`,
+            },
+          }
+        );
+        const { data } = response;
+        setPosterMovie(data);
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          alert(error?.response?.data?.status_message);
+          return;
+        }
+        alert(error?.status_message);
+      }
+    };
+    getPosterMovie();
+  }, [movieId]);
+
   console.log(TrailerMovie.key);
   return (
-    <div className="">
-      <div className="w-full h-full">
-        <iframe
-          title={TrailerMovie?.name}
-          className="w-full h-screen px-52 py-32"
-          src={`https://www.youtube.com/embed/${TrailerMovie?.key}`}
-          frameBorder="0"
-          allowFullScreen
-        ></iframe>
-      </div>
+    <div className=" relative w-full h-full">
+      <img
+        className="w-full h-screen "
+        src={`${import.meta.env.VITE_IMG_TRADING}${posterMovie.backdrop_path}`}
+      />
+      <iframe
+        title={TrailerMovie?.name}
+        className="w-full h-screen px-[800px] py-80 absolute top-0 flex items-center"
+        src={`https://www.youtube.com/embed/${TrailerMovie?.key}`}
+        frameBorder="0"
+        allowFullScreen
+      ></iframe>
     </div>
   );
 };
