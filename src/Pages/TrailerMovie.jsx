@@ -62,14 +62,14 @@ const TrailerMovie = () => {
 
   console.log(TrailerMovie.key);
   return (
-    <div className=" relative w-full h-full">
+    <div className=" relative w-full ">
       <img
-        className="w-full h-screen "
+        className="w-full h-screen"
         src={`${import.meta.env.VITE_IMG_TRADING}${posterMovie.backdrop_path}`}
       />
       <iframe
         title={TrailerMovie?.name}
-        className="w-full h-screen px-[800px] py-80 absolute top-0 flex items-center"
+        className="w-full h-full px-6 py-72 2xl:px-[600px] 2xl:py-70  md:px-[200px] md:py-40 absolute top-0  flex items-center justify-center"
         src={`https://www.youtube.com/embed/${TrailerMovie?.key}`}
         frameBorder="0"
         allowFullScreen

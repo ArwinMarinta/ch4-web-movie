@@ -33,7 +33,7 @@ const Home = ({ trandingMovie, limit }) => {
   return (
     <>
       <div className="overflow-hidden relative w-full">
-        <div className="w-full h-screen flex items-center justify-center transition-transform transform translate-x ">
+        <div className="w-full h-[500px]  lg:h-screen flex items-center justify-center transition-transform transform translate-x ">
           {limitedTradingMovies.map((movie, index) => (
             <div
               key={movie?.id}

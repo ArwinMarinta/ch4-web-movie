@@ -2,6 +2,7 @@ import { useState } from "react";
 import Hambuger from "../assets/hamburger.svg";
 import Search from "../assets/search2.svg";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const Navbar = () => {
   const [openSearch, setOpenSearch] = useState(false);
@@ -52,6 +53,7 @@ const Navbar = () => {
             <input
               placeholder="  Search You Movie"
               className=" bg-transparent w-full "
+              type="text"
             />
           </div>
         </div>
@@ -70,4 +72,7 @@ const Navbar = () => {
   );
 };
 
+Navbar.propTypes = {
+  search: PropTypes.func,
+};
 export default Navbar;
