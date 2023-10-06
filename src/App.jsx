@@ -8,11 +8,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AllPopularMovie from "./Pages/AllPopularMovie";
 import TrailerMovie from "./Pages/TrailerMovie";
+import Footer from "./Components/Footer";
 
 function App() {
   const [popularMovie, setPopularMovie] = useState([]);
 
   useEffect(() => {
+    //populaer Movie
     const getPopularMovie = async () => {
       try {
         const response = await axios.get(
@@ -37,6 +39,10 @@ function App() {
     };
     getPopularMovie();
   }, []);
+
+  //get search Movie
+  useEffect(() => {});
+
   return (
     <BrowserRouter>
       <Navbar />
@@ -50,6 +56,7 @@ function App() {
         />
         <Route path="/trailer/:movieId" element={<TrailerMovie />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

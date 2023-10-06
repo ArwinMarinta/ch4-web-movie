@@ -1,12 +1,38 @@
 import { useState } from "react";
 import Hambuger from "../assets/hamburger.svg";
 import Search from "../assets/search2.svg";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import { Link, useNavigate } from "react-router-dom";
+// import PropTypes from "prop-types";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [openSearch, setOpenSearch] = useState(false);
   const [openHamburger, setOpenHamburger] = useState(false);
+  const [query, setQuery] = useState("");
+
+  const handleChange = (event) => {
+    setQuery(event.target.value);
+  };
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const searchQuery = event.target.search.value;
+
+    if (searchQuery.trim() === "") {
+      return;
+    }
+
+    const searchUrl = `/search?query=${searchQuery}&include_adult=false&page=1`;
+
+    navigate(searchUrl);
+  };
+
+  // useEffect(() => {
+  //   if (query.trim() !== "") {
+  //     const searchURL = `/search?query=${query}&include_adult=false&page=1`;
+  //     navigate(searchURL);
+  //   }
+  // }, [query, navigate]);
 
   return (
     <div className="items-center absolute w-full top-0 left-0 right-0 z-40 bg-transparent  ">
@@ -27,20 +53,34 @@ const Navbar = () => {
           >
             <img src={Hambuger} className="h-6 w-6" />
           </div>
-          <div className="hidden lg:block py-2 w-[60%] justify-center items-center  ">
-            <div className=" flex flex-row h-14 rounded-2xl border-2 border-red-600 mb-4 self-center  ">
-              <img src={Search} className="py-2" />
+          <div className="hidden lg:block py-2 w-[60%] ">
+            <form
+              onSubmit={handleSearch}
+              className=" flex flex-row h-14 rounded-2xl border-2 border-red-600 self-center hover:border-[3px] "
+            >
+              <img src={Search} className="py-2 ml-2" />
               <input
-                placeholder="  Search You Movie"
-                className=" bg-transparent w-full text-xl  "
+                // value={query}
+                // onChange={handleChange}
+                type="text"
+                name="search"
+                placeholder=" Search You Movie"
+                className="ml-4 placeholder-gray-50 bg-transparent border-spacing-0 w-full text-xl active:border-none focus:outline-none text-white"
               />
-            </div>
+            </form>
           </div>
-          <div className="hidden lg:block ">
-            <Link className="inline-flex px-6 py-4 rounded-3xl border-2 border-red-600 font-bold text-xl  text-red-600 ml-4">
+          <div className="hidden lg:block">
+            <Link
+              as={Link}
+              to={`/`}
+              className="text-white text-xl mr-4 hover:text-red-600"
+            >
+              HOME
+            </Link>
+            <Link className="inline-flex px-5 py-3 rounded-xl border-2 border-red-600 font-bold text-xl  text-red-600 ml-4 hover:bg-white">
               Login
             </Link>
-            <Link className="inline-flex px-6 py-4 rounded-3xl  bg-red-600 font-bold text-xl  text-white ml-4">
+            <Link className="inline-flex px-5 py-3 rounded-xl  bg-red-600 font-bold text-xl  text-white ml-4">
               Register
             </Link>
           </div>
@@ -48,22 +88,25 @@ const Navbar = () => {
       </div>
       <div className={`${openSearch ? "block" : "hidden"} lg:hidden`}>
         <div className="w-full flex justify-center items-center px-4">
-          <div className="flex flex-row  h-10 rounded-2xl border-2 border-red-600 mb-4 w-full">
-            <img src={Search} className="py-2" />
+          <form className="flex flex-row  h-10 rounded-xl border-2 border-red-600 mb-4 w-full bg-red">
+            <img src={Search} className="py-2 ml-2" />
             <input
+              value={query}
+              onChange={handleChange}
               placeholder="  Search You Movie"
-              className=" bg-transparent w-full "
+              name="search"
+              className="ml-2 placeholder-white text-white bg-transparent rounded-r-xl w-full active:border-none focus:outline-none border-0"
               type="text"
             />
-          </div>
+          </form>
         </div>
       </div>
       <div className={`${openHamburger ? "block" : "hidden"} lg:hidden`}>
         <div className="flex flex-col justify-center items-center gap-4">
-          <Link className="inline-flex px-6 py-4 rounded-3xl border-2 border-red-600 font-bold text-xl  text-red-600 ml-4">
+          <Link className="inline-flex px-4 py-2 rounded-xl border-2 border-red-600 font-bold text-base  text-red-600 ml-4">
             Login
           </Link>
-          <Link className="inline-flex px-6 py-4 rounded-3xl  bg-red-600 font-bold text-xl  text-white ml-4">
+          <Link className="inline-flex px-4 py-2 rounded-xl  bg-red-600 font-bold text-base  text-white ml-4">
             Register
           </Link>
         </div>
@@ -73,6 +116,7 @@ const Navbar = () => {
 };
 
 Navbar.propTypes = {
-  search: PropTypes.func,
+  // changeWord: PropTypes.func,
+  // query: PropTypes.string,
 };
 export default Navbar;
