@@ -88,11 +88,14 @@ const Navbar = () => {
       </div>
       <div className={`${openSearch ? "block" : "hidden"} lg:hidden`}>
         <div className="w-full flex justify-center items-center px-4">
-          <form className="flex flex-row  h-10 rounded-xl border-2 border-red-600 mb-4 w-full bg-red">
+          <form
+            onSubmit={handleSearch}
+            className="flex flex-row  h-10 rounded-xl border-2 border-red-600 mb-4 w-full bg-red"
+          >
             <img src={Search} className="py-2 ml-2" />
             <input
-              value={query}
-              onChange={handleChange}
+              // value={query}
+              // onChange={handleChange}
               placeholder="  Search You Movie"
               name="search"
               className="ml-2 placeholder-white text-white bg-transparent rounded-r-xl w-full active:border-none focus:outline-none border-0"
