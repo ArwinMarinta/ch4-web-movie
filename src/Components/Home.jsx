@@ -78,15 +78,6 @@ const Home = ({ trandingMovie, limit }) => {
             className="lg:w-40 h-full w-6 absolute top-0 right-0 "
           ></button>
         </div>
-        {/* 
-        <button
-          onClick={handlePrevSlide}
-          className="lg:w-40 h-screen w-6 bg-red-600 "
-        ></button>
-        <button
-          onClick={handleNextSlide}
-          className="lg:w-40 h-screen w-6 bg-slate-950"
-        ></button> */}
 
         <span className="absolute bottom-16 right-0 left-0  flex justify-center ">
           {limitedTradingMovies.map((_, index) => (

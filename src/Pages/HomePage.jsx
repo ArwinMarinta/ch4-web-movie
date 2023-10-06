@@ -11,10 +11,10 @@ const HomePage = ({ popularMovie }) => {
     const getTradingMovie = async () => {
       try {
         const response = await axios.get(
-          `https://api.themoviedb.org/3/trending/movie/day?language=en-US`,
+          `${import.meta.env.VITE_API_URL}/3/trending/movie/day?language=en-US`,
           {
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYTIxNDgxNzA3N2Q4NDNjODA4NzU4NzBkOWMxMGE4YSIsInN1YiI6IjY1MTAxOTlkYTkxMTdmMDBmZWIyZWI1MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5qbnKjp2I6BfJrYPZeWwagLjrM4tUhpP_KAlF0QGy6I`,
+              Authorization: `Bearer ${import.meta.env.VITE_API_AUTH_TOKEN}`,
             },
           }
         );

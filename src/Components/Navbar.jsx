@@ -8,11 +8,11 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [openSearch, setOpenSearch] = useState(false);
   const [openHamburger, setOpenHamburger] = useState(false);
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
 
-  const handleChange = (event) => {
-    setQuery(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setQuery(event.target.value);
+  // };
 
   const handleSearch = (event) => {
     event.preventDefault();
