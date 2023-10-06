@@ -13,7 +13,9 @@ const TrailerMovie = () => {
     const getTrailerMovie = async () => {
       try {
         const response = await axios.get(
-          `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US}`,
+          `${
+            import.meta.env.VITE_API_URL
+          }/3/movie/${movieId}/videos?language=en-US}`,
           {
             headers: {
               Authorization: `Bearer ${import.meta.env.VITE_API_AUTH_TOKEN}`,
